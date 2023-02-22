@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Connect 4</title>
+    <link rel="stylesheet" href="/css/index.css">
+    <link rel="stylesheet" href="/css/general_layout.css">
+</head>
+
+
+<!-------------------------------------------------------------VISIBLE PAGE--------------------------------------------------------------->
+<div class="grid-container">
+    <%- include("../partials/header.ejs",{playerID, friendsList}); %>
+    
+    <div class="entireBody">
+        <div class="menuBody" id="menuBody">
+            <div class="button-grid-container">
+               
+                <div class="button1" id="mainMenuButton" onclick="toggleDisplayMenu('playMenu')">
+                    <div id="button1Img">
+                        <img draggable="false" src='/img/navBar/play_chip.png'
+                            style="width: min(25vw, 200px);">
+                    </div>
+                </div>
+                
+                <div class="button2" id="mainMenuButton" onclick="toggleDisplayMenu('comingSoonMenu')">
+                    <div id="button2Img">
+                        <img draggable="false" src='/img/navBar/other_modes_chip.png'
+                            style="width: min(25vw, 200px);">
+                    </div>
+                </div>
+                
+                <%if(playerID == null){%>
+                    <div class="button3" id="mainMenuButton" >
+                        <div id="button3Img" onclick="toggleDisplayMenu('loginMenu')">
+                            <img draggable="false" src='/img/navBar/create_acc_chip.png'
+                                style="width: min(25vw, 200px)">
+                        </div>
+                    </div>
+                <%}else{%>
+                    <div class="button3" id="mainMenuButton">
+                        <div id="button3Img" onclick="location.href='/profile/<%-playerID%>?tab=profileTabCont'">
+                            <img draggable="false" src='/img/navBar/profile_chip.png'
+                                style="width: min(25vw, 200px)">
+                        </div>
+                    </div>
+                <%}%>
+                
+            </div>
+
+        </div>
+    </div>
+    
+    <%- include("../partials/footer.ejs",{playerID, gameIDs, enemyIDs}); %>
+</div>
+<!--------------------------------------------------------------------END OF VISIBLE PAGE--------------------------------------------------->
+
+
+<!------------------------------------------------------------------------SIMPLE JAVASCRIPTS------------------------------------------------------------------------>
+<script>
+    /*this code is here to make sure that if the user resizes the screen too small 
+    for the "contain" attribute of the background image size of the
+    big red chip to be causing problems, to instead swap the background image size ot be
+    cover instead of contain.
+    */
+    window.onresize = function(){
+        if(window.innerWidth <= 800){
+            document.getElementById("menuBody").style.backgroundSize = "cover";
+        }else{
+            document.getElementById("menuBody").style.backgroundSize = "contain";
+        }
+    }
+</script>
+<script src="/js/generalScript.js"></script>
+<!------------------------------------------------------------------------END OF SIMPLE JAVASCRIPTS------------------------------------------------------------------------>
+
+
+
+</html>

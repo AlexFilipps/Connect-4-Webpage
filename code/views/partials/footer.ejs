@@ -1,0 +1,7 @@
+<div class="entireFooter">    
+    <% for(let i = 0; i < enemyIDs.length; i++){%>   
+        <img draggable="false" <%- "src='/profile/profilePic/"+enemyIDs[i]+"'"%>
+           class='footerItems' 
+           <%- "onclick=\"location.href='/play/join/"+gameIDs[i]+"'\""%>>
+    <%}%>
+</div>

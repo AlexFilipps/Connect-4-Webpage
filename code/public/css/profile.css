@@ -1,0 +1,372 @@
+/*profileBody is a grid template which defines the general structure of all the content on the profile page*/
+.profileBody{
+    outline: 2px solid black;
+    width: 80vw;
+    height: 81.81818181818vh;
+    margin: auto;
+    display: grid;
+    grid-template-columns: 3fr 2fr;
+    grid-template-rows: 1fr 1fr 10fr;
+    grid-template-areas: 
+        'tabBar profileBar'
+        'tabCont profileBar'
+        'tabCont friendList';
+    user-select: none;
+}
+
+
+
+/*tabBar and related classes
+--------------------------------------------------*/
+
+/*tabBar is the bar at the top of the profile window which conatains tab buttons for all profile content*/
+.tabBar{
+    height: 6.8181818181818vh;
+    width: 48vw;
+    outline: inherit;
+    grid-area: tabBar;
+}
+
+/*tabCont is the area below the tabBar which will display different info based on which tab was selected last*/
+.tabCont{
+    height: 75vh;
+    width: 48vw;
+    outline: inherit;
+    grid-area: tabCont;
+}
+
+.tabBar button {
+    outline: inherit;
+    background-color: inherit;
+    float: left;
+    cursor: pointer;
+    width: 12vw;
+    height: 6.8181818181818vh;
+    overflow: hidden;
+}
+
+.tabBar button:hover {
+    background-color: darkgrey;
+}
+
+/*------------------------------------------------*/
+
+
+
+
+
+
+
+
+
+
+
+
+
+/*ProfileBar and related classes
+--------------------------------------------------*/
+
+.profileBar{
+    height: 13.6363636363636363vh;
+    width: 32vw;
+    outline: inherit;
+    grid-area: profileBar;
+    display: grid;
+    grid-template-columns: 1fr 2fr 1fr;
+    grid-template-rows: 1fr 1fr;
+    grid-template-areas: 
+        'userProfilePic userProfileName addFriendButton'
+        'userProfilePic userProfileName viewRequestButton';
+}
+
+.profileBar button{
+    height: 6.818181818181818vh;
+    width: 8vw;
+    outline: inherit;
+    background-color: inherit;
+    cursor: pointer;
+}
+
+.profileBar button:hover {
+    background-color: darkgrey;
+}
+
+.userProfilePic{
+    height: 13.6363636363636363vh;
+    width: 8vw;
+    outline: inherit;
+    background-repeat: no-repeat;
+    background-size: contain;
+    background-position: 50%;
+    grid-area: userProfilePic;
+}
+
+.userProfileName{
+    height: 13.6363636363636363vh;
+    width: 16vw;
+    outline: inherit;
+    grid-area: userProfileName;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 2em;
+    overflow: hidden;
+}
+
+.addFriendButton{
+    outline: inherit;
+    grid-area: addFriendButton;
+    overflow: hidden;
+}
+
+.viewRequestButton{
+    outline: inherit;
+    grid-area: viewRequestButton;
+    overflow: hidden;
+}
+
+/*------------------------------------------------*/
+
+
+
+
+/*friendList and related classes
+--------------------------------------------------*/
+
+.friendList{
+    height: 68.18181818181818vh;
+    width: 32vw;
+    outline: inherit;
+    grid-area: friendList;
+    overflow-y: scroll;
+    overflow-x: hidden;
+}
+
+.friendBlock{
+    outline: inherit;
+    width: 32vw;
+    height: 6.81818181818181818vh;
+    display: grid;
+    grid-template-columns: 1fr 3fr;
+    grid-template-rows: 1fr 1fr;
+    grid-template-areas: 
+        'friendProfilePic friendProfileName'
+        'friendProfilePic friendProfileStatus';
+    background-color: darkcyan;
+}
+
+.friendProfilePic{
+    grid-area: friendProfilePic;
+}
+
+.friendProfileName{
+    margin: 0px;
+    padding: 0px;
+    grid-area: friendProfileName;
+    height: 3.409090909090909vh;
+    width: 24vw;
+}
+
+.friendProfileStatus{
+    margin: 0px;
+    padding: 0px;
+    grid-area: friendProfileStatus;
+    height: 3.409090909090909vh;
+    width: 24vw;
+}
+
+/*------------------------------------------------*/
+
+
+
+
+
+
+
+/*profileTabCont and related classes
+--------------------------------------------------*/
+
+.profileTabCont{
+    height: 75vh;
+    width: 48vw;
+    outline: 2px solid black;
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    grid-template-rows: 1fr 3fr;
+    grid-template-areas: 
+        'settingUserProfilePic changeUserPicButton'
+        'profileSetting profileSetting';
+}
+
+.profileSettings{
+    height: 56.25vh;
+    width: 48vw;
+    outline: 2px solid black;
+    grid-area: profileSetting;
+    margin: 0;
+}
+
+.profileSettings li{
+    padding: 10px;
+}
+
+.profileSettingText{
+    float: left;
+    margin-left: 10%;
+}
+
+.profileSettingBox{
+    float: right;
+    margin-right: 20%;;
+}
+
+.changeUserPicButton{
+
+    height: 18.75vh;
+    width: 32vw;
+/*    position: relative;*/
+}
+
+.settingUserProfilePic{
+    grid-area: settingUserProfilePic;
+}
+
+/*------------------------------------------------*/
+
+
+
+
+
+
+
+/*matchHistoryTabCont and related classes
+--------------------------------------------------*/
+
+.matchHistoryTabCont{
+    height: 75vh;
+    width: 48vw;
+    margin: 0;
+    padding: 0;
+    list-style: none;   
+    overflow-y: scroll;
+    overflow-x: hidden;
+}
+
+.matchHistoryCell{
+    outline: 2px solid black;
+    width: 48vw;
+    height: 12.5vh;
+    display: grid;
+    grid-template-columns: 1fr 3fr;
+    grid-template-rows: 1fr 1fr;
+    grid-template-areas: 
+        'matchHistoryOutcome playerProfileName'
+        'matchHistoryOutcome enemyProfileName';
+}
+
+.matchHistoryOutcome{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 12vw;
+    height: 12.5vh;
+    grid-area: matchHistoryOutcome;
+    overflow: hidden;
+    outline: inherit;
+}
+
+.playerProfileName{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 6.25vh;
+    width: 36vw;
+    margin: 0px;
+    padding: 0px;
+    grid-area: playerProfileName;
+    overflow: hidden;
+    outline: inherit;
+}
+
+.enemyProfileName{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 6.25vh;
+    width: 36vw;
+    margin: 0px;
+    padding: 0px;
+    grid-area: enemyProfileName;
+    overflow: hidden;
+    outline: inherit;
+}
+/*------------------------------------------------*/
+
+/*activeGameTabCont and related classes
+--------------------------------------------------*/
+
+.activeGameTabCont{
+    height: 75vh;
+    width: 48vw;
+    margin: 0;
+    padding: 0;
+    list-style: none;   
+    overflow-y: scroll;
+    overflow-x: hidden;
+}
+
+.activeGameCell{
+    outline: 2px solid black;
+    width: 48vw;
+    height: 12.5vh;
+    display: grid;
+    grid-template-columns: 1fr 3fr;
+    grid-template-rows: 1fr 1fr;
+    grid-template-areas: 
+        'activeGameTurn playerProfileName'
+        'activeGameTurn enemyProfileName';
+}
+
+.activeGameTurn{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 12vw;
+    height: 12.5vh;
+    grid-area: activeGameTurn;
+    overflow: hidden;
+}
+
+/*------------------------------------------------*/
+
+
+
+
+
+/*activeGameTabCont and related classes
+--------------------------------------------------*/
+
+.statisticsTabCont{
+    height: 75vh;
+    width: 48vw;
+    background: url("/img/barGraph.png");
+    background-repeat: no-repeat;
+    background-size: contain;
+    background-position: 50%;  
+}
+
+/*------------------------------------------------*/
+
+
+
+
+
+
+
+
+
+
+
+
+
+

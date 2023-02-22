@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Connect 4</title>
+    <link rel="stylesheet" href="/css/general_layout.css">
+    <link rel="stylesheet" href="/css/play.css">
+</head>
+
+
+<div class="grid-container">
+    <%- include("../partials/header.ejs",{playerID}); %>
+    
+    <div class="entireBody">
+        <div class="gameMenu">
+            <div class="gameScreen" style = "
+                        display: flex;
+                        justify-content: center;
+                        align-items: center;
+               ">
+                <div style="
+                        display: flex;
+                        flex-wrap: wrap;
+                        width: min(55vw, 65vh);
+                        height: min(55vw, 65vh);
+                        user-select: none;
+                   "
+                   >
+                   <img draggable="false" class="cell06" src="/img/boardArrow.png" style="width: 14.285%;">
+                   <img draggable="false" class="cell16" src="/img/boardArrow.png" style="width: 14.285%;">
+                   <img draggable="false" class="cell26" src="/img/boardArrow.png" style="width: 14.285%;">
+                   <img draggable="false" class="cell36" src="/img/boardArrow.png" style="width: 14.285%;">
+                   <img draggable="false" class="cell46" src="/img/boardArrow.png" style="width: 14.285%;">
+                   <img draggable="false" class="cell56" src="/img/boardArrow.png" style="width: 14.285%;">
+                   <img draggable="false" class="cell66" src="/img/boardArrow.png" style="width: 14.285%;">
+                   <img draggable="false" class="cell05" src="/img/boardCell.png"  style="width: 14.285%;">
+                   <img draggable="false" class="cell15" src="/img/boardCell.png" style="width: 14.285%;">
+                   <img draggable="false" class="cell25" src="/img/boardCell.png" style="width: 14.285%;">
+                   <img draggable="false" class="cell35" src="/img/boardCell.png" style="width: 14.285%;">
+                   <img draggable="false" class="cell45" src="/img/boardCell.png" style="width: 14.285%;">
+                   <img draggable="false" class="cell55" src="/img/boardCell.png" style="width: 14.285%;">
+                   <img draggable="false" class="cell65" src="/img/boardCell.png" style="width: 14.285%;">
+                   <img draggable="false" class="cell04" src="/img/boardCell.png" style="width: 14.285%;">
+                   <img draggable="false" class="cell14" src="/img/boardCell.png" style="width: 14.285%;">
+                   <img draggable="false" class="cell24" src="/img/boardCell.png" style="width: 14.285%;">
+                   <img draggable="false" class="cell34" src="/img/boardCell.png" style="width: 14.285%;">
+                   <img draggable="false" class="cell44" src="/img/boardCell.png" style="width: 14.285%;">
+                   <img draggable="false" class="cell54" src="/img/boardCell.png" style="width: 14.285%;">
+                   <img draggable="false" class="cell64" src="/img/boardCell.png" style="width: 14.285%;">
+                   <img draggable="false" class="cell03" src="/img/boardCell.png" style="width: 14.285%;">
+                   <img draggable="false" class="cell13" src="/img/boardCell.png" style="width: 14.285%;">
+                   <img draggable="false" class="cell23" src="/img/boardCell.png" style="width: 14.285%;">
+                   <img draggable="false" class="cell33" src="/img/boardCell.png" style="width: 14.285%;">
+                   <img draggable="false" class="cell43" src="/img/boardCell.png" style="width: 14.285%;">
+                   <img draggable="false" class="cell53" src="/img/boardCell.png" style="width: 14.285%;">
+                   <img draggable="false" class="cell63" src="/img/boardCell.png" style="width: 14.285%;">
+                   <img draggable="false" class="cell02" src="/img/boardCell.png" style="width: 14.285%;">
+                   <img draggable="false" class="cell12" src="/img/boardCell.png" style="width: 14.285%;">
+                   <img draggable="false" class="cell22" src="/img/boardCell.png" style="width: 14.285%;">
+                   <img draggable="false" class="cell32" src="/img/boardCell.png" style="width: 14.285%;">
+                   <img draggable="false" class="cell42" src="/img/boardCell.png" style="width: 14.285%;">
+                   <img draggable="false" class="cell52" src="/img/boardCell.png" style="width: 14.285%;">
+                   <img draggable="false" class="cell62" src="/img/boardCell.png" style="width: 14.285%;">
+                   <img draggable="false" class="cell01" src="/img/boardCell.png" style="width: 14.285%;">
+                   <img draggable="false" class="cell11" src="/img/boardCell.png" style="width: 14.285%;">
+                   <img draggable="false" class="cell21" src="/img/boardCell.png" style="width: 14.285%;">
+                   <img draggable="false" class="cell31" src="/img/boardCell.png" style="width: 14.285%;">
+                   <img draggable="false" class="cell41" src="/img/boardCell.png" style="width: 14.285%;">
+                   <img draggable="false" class="cell51" src="/img/boardCell.png" style="width: 14.285%;">
+                   <img draggable="false" class="cell61" src="/img/boardCell.png" style="width: 14.285%;">
+                   <img draggable="false" class="cell00" src="/img/boardCell.png" style="width: 14.285%;">
+                   <img draggable="false" class="cell10" src="/img/boardCell.png" style="width: 14.285%;">
+                   <img draggable="false" class="cell20" src="/img/boardCell.png" style="width: 14.285%;">
+                   <img draggable="false" class="cell30" src="/img/boardCell.png" style="width: 14.285%;">
+                   <img draggable="false" class="cell40" src="/img/boardCell.png" style="width: 14.285%;">
+                   <img draggable="false" class="cell50" src="/img/boardCell.png" style="width: 14.285%;">
+                   <img draggable="false" class="cell60" src="/img/boardCell.png" style="width: 14.285%;">
+                    
+                </div>
+            </div>
+
+            <div class="historyMenu">
+                <h3 style="padding-left: 20px; outline: inherit; margin: 0; user-select: none;" >Game History:</h3>
+                <table class="historyTable" id=historyTable>  
+                </table>
+            </div>
+
+            <div class="gameButtonMenu">
+                <button onclick="resignGame()" style="user-select: none;">Resign</button>
+            </div>
+            
+            <div class="playerDisplay">
+                <div id="playerPanel" class="playerDisplayPanel" style="background-color: indianred; cursor:pointer;" onclick='location.href="/profile/<%-gameToJoin.user1%>?tab=profileTabCont"'>
+                    <div class="playerIcon" style="
+                        background: url(<%- "/profile/profilePic/" + gameToJoin.user1%>);
+                        width: 7.272727272727272727vw;
+                        height: 10.90909090909090909vh;
+                        background-repeat: no-repeat;
+                        background-size: contain;
+                        background-position: 50%;
+                        outline: inherit;
+                        grid-area: playerIcon;"
+                        ></div>
+                    <div class="playerName"><p style="user-select: none;"><%- redData.username %></p></div>
+                    <div class="playerStatus" id="redStatus"><p style="user-select: none;">Making Move...</p></div>
+                </div>
+                <div id="playerPanel" class="enemyDisplayPanel" style="background-color: skyblue; cursor:pointer;" onclick='location.href="/profile/<%-gameToJoin.user2%>?tab=profileTabCont"'>
+                    <div class="enemyIcon" style="
+                        background: url(<%- "/profile/profilePic/" + gameToJoin.user2%>);
+                        width: 7.272727272727272727vw;
+                        height: 10.90909090909090909vh;
+                        background-repeat: no-repeat;
+                        background-size: contain;
+                        background-position: 50%;
+                        outline: inherit;
+                        grid-area: playerIcon;"></div>
+                    <div class="playerName"><p style="user-select: none;"><%- blueData.username %></p></div>
+                    <div class="playerStatus" id="blueStatus"><p style="user-select: none;">Waiting...</p></div>
+                </div>
+            </div>
+            
+            <div id="chatMenu" class="chatMenu" style="overflow: auto; word-wrap: break-word;"></div>
+
+            <div class="chatBar">
+                <input id="playerChat" class="chatInput" style="box-sizing: border-box;">
+                <button class="sendButton" onclick="sendMessage()" style="user-select: none;">Send</button>
+            </div>
+        
+        </div>
+        
+    </div>
+    
+    <%- include("../partials/footer.ejs",{playerID, gameIDs, enemyIDs}); %>
+</div>
+
+
+
+<script src="/js/historyViewer.js"></script>
+<script src="/js/generalScript.js"></script>
+<script src="/js/ClassicConnect4Game.js"></script>
+<script src="/js/play.js"></script>
+<script src="/js/Message.js"></script>
+<script src="/js/chatMenu.js"></script>
+
+<script>
+    let req = null;
+    let viewerColour = "<%-viewerColour%>";
+    let currMoves = "";
+    let chat = "";
+    let gameID = location.pathname.split("/")[3].split("?")[0];
+    
+    
+    function getMoves(){
+        req = new XMLHttpRequest();
+        req.onreadystatechange = function() {
+            if(this.readyState==4 && this.status==200){
+                if(currMoves != this.response){
+                    reconstructGame(this.response);
+                }
+            }
+        }
+        
+        req.open("GET", "/games/moves/" + gameID);
+        req.send();
+    }
+    getMoves();
+    
+    var snd = new Audio("/sounds/join.wav");
+    snd.play();
+    
+    var snd2 = new Audio("/sounds/newMessage.mp3");
+    function getChat(){
+        req = new XMLHttpRequest();
+        req.onreadystatechange = function() {
+            if(this.readyState==4 && this.status==200){
+                if(chat != this.response){
+                    if(chat != "") {snd2.play();} //dont play sound if just loading from scratch
+                    
+                    chat = this.response;
+                    document.getElementById("chatMenu").innerHTML = this.response;
+
+                }
+            }
+        }
+        
+        req.open("GET", "/games/chat/" + gameID);
+        req.send();
+    }
+    
+    
+    function getForfeit(){
+        req = new XMLHttpRequest();
+        req.onreadystatechange = function() {
+            if(this.readyState==4 && this.status==200){
+                let loser = this.response;
+                if(!(loser === "-1")){
+                    resignHTML(this.response);
+            
+                }
+            }
+        }
+        
+        req.open("GET", "/games/getForfeit/" + gameID);
+        req.send();
+    }
+    
+    
+    setInterval(getForfeit, 500);
+    setInterval(getChat, 500);
+    setInterval(getMoves, 500);
+</script>
+
+<script>
+    function resignGame(){
+        req = new XMLHttpRequest();
+        
+        req.open("PUT", "/games/resign");
+        req.send("gameID=" + gameID);
+    }
+</script>
+
+</html>

@@ -1,0 +1,74 @@
+{
+  "0000001": {
+    "user1": "0000001",
+    "user2": "0000002",
+    "moves": "3523410",
+    "winner": "",
+    "forfeited": false,
+    "privacy": "public",
+    "chat": ""
+  },
+  "0000002": {
+    "user1": "0000003",
+    "user2": "0000001",
+    "moves": "0425023",
+    "winner": "",
+    "forfeited": false,
+    "privacy": "private",
+    "chat": ""
+  },
+  "0000003": {
+    "user1": "0000001",
+    "user2": "0000004",
+    "moves": "1423013",
+    "winner": "",
+    "forfeited": false,
+    "privacy": "friends-only",
+    "chat": ""
+  },
+  "0000004": {
+    "user1": "0000005",
+    "user2": "0000001",
+    "moves": "01234",
+    "winner": "",
+    "forfeited": false,
+    "privacy": "public",
+    "chat": ""
+  },
+  "0000005": {
+    "user1": "0000001",
+    "user2": "0000002",
+    "moves": "35234105142266",
+    "winner": "B",
+    "forfeited": false,
+    "privacy": "public",
+    "chat": ""
+  },
+  "0000006": {
+    "user1": "0000003",
+    "user2": "0000001",
+    "moves": "0425023406216153",
+    "winner": "B",
+    "forfeited": false,
+    "privacy": "private",
+    "chat": ""
+  },
+  "0000007": {
+    "user1": "0000001",
+    "user2": "0000004",
+    "moves": "0123461615336364625245215",
+    "winner": "R",
+    "forfeited": false,
+    "privacy": "friends-only",
+    "chat": ""
+  },
+  "0000008": {
+    "user1": "0000005",
+    "user2": "0000001",
+    "moves": "14230124562505116263402526",
+    "winner": "B",
+    "forfeited": false,
+    "privacy": "public",
+    "chat": ""
+  }
+}

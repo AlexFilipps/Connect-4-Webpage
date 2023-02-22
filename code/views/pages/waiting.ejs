@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Connect 4</title>
+    <link rel="stylesheet" href="/css/general_layout.css">
+    <link rel="stylesheet" href="/css/play.css">
+</head>
+
+
+<div class="grid-container">
+    <%- include("../partials/header.ejs",{playerID}); %>
+    
+    <div class="entireBody">
+        <div class="gameMenu">
+            <div class="gameScreen" style = "
+                        display: flex;
+                        justify-content: center;
+                        align-items: center;
+               ">
+                <div style="
+                        display: flex;
+                        flex-wrap: wrap;
+                        width: min(55vw, 65vh);
+                        height: min(55vw, 65vh);
+                        user-select: none;
+                   "
+                   >
+                   <h1>Waiting...</h1>
+                   <img src="/img/loading.png" style="width: 20vw;">
+                    
+                </div>
+            </div>
+
+            <div class="historyMenu">
+                <h3 style="padding-left: 20px; outline: inherit; margin: 0; user-select: none;" >Game History:</h3>
+                <table class="historyTable" id=historyTable>  
+                </table>
+            </div>
+
+            <div class="gameButtonMenu">
+                <button style="user-select: none;">Resign</button>
+            </div>
+            
+            <div class="playerDisplay">
+                <div id="playerPanel" class="playerDisplayPanel" style="background-color: indianred; cursor:pointer;" onclick='location.href="/profile/<%-gameToJoin.user1%>?tab=profileTabCont"'>
+                    <div class="playerIcon" style="
+                        background: url(<%- "/profile/profilePic/" + gameToJoin.user1%>);
+                        width: 7.272727272727272727vw;
+                        height: 10.90909090909090909vh;
+                        background-repeat: no-repeat;
+                        background-size: contain;
+                        background-position: 50%;
+                        outline: inherit;
+                        grid-area: playerIcon;"
+                        ></div>
+                    <div class="playerName"><p style="user-select: none;"><%- redData.fName %></p></div>
+                    <div class="playerStatus" id="redStatus"><p style="user-select: none;">Waiting...</p></div>
+                </div>
+                <div id="playerPanel" class="enemyDisplayPanel" style="background-color: skyblue; cursor:pointer;">
+                    <div class="enemyIcon" style="
+                        background: url(/img/blankUser.png);
+                        width: 7.272727272727272727vw;
+                        height: 10.90909090909090909vh;
+                        background-repeat: no-repeat;
+                        background-size: contain;
+                        background-position: 50%;
+                        outline: inherit;
+                        grid-area: playerIcon;"></div>
+                    <div class="playerName"><p style="user-select: none;">??????</p></div>
+                    <div class="playerStatus" id="blueStatus"><p style="user-select: none;">Not joined yet...</p></div>
+                </div>
+            </div>
+            
+            <div class="chatMenu" style="overflow: auto; word-wrap: break-word;"></div>
+
+            <div class="chatBar">
+                <input id="playerChat" class="chatInput" style="box-sizing: border-box;">
+                <button class="sendButton" onclick="printMsg()" style="user-select: none;">Send</button>
+            </div>
+        
+        </div>
+        
+    </div>
+    
+    <%- include("../partials/footer.ejs",{playerID, gameIDs, enemyIDs}); %>
+</div>
+
+
+
+<script src="/js/historyViewer.js"></script>
+<script src="/js/generalScript.js"></script>
+<script src="/js/ClassicConnect4Game.js"></script>
+<script src="/js/play.js"></script>
+<script src="/js/Message.js"></script>
+<script src="/js/chatMenu.js"></script>
+
+<script>
+    let req = null;
+    
+    function getMoves(){
+        req = new XMLHttpRequest();
+        req.onreadystatechange = function() {
+            if(this.readyState==4 && this.status==200){
+                loadGame(this.response);
+            }
+        }
+
+        //Making a GET request to a server on the local computer
+        //The resource requests is /names
+        //A query string is included specifying the search query
+        //The reponse should contain an object with a 'names' property
+        //The value of the 'names' property will be an array of strings
+        let gameID = location.pathname.split("/")[3].split("?")[0];
+        req.open("GET", "/games/moves/" + gameID);
+        req.send();
+    }
+    getMoves();
+    
+    setInterval(function() {
+        
+        req = new XMLHttpRequest();
+        req.onreadystatechange = function() {
+            if(this.readyState==4 && this.status==200){
+                console.log(this.response);
+                if(this.response === "4"){
+                    requestDenied();           
+                }else if(this.response != "2" && this.response != "-2"){
+                    window.location.reload();
+                }
+            }
+        }
+        
+        let gameID = location.pathname.split("/")[3].split("?")[0];
+        req.open("GET", "/games/getGameStatus/" + gameID);
+        req.send();
+    }, 500);
+    
+    let denied = false;
+    
+    function requestDenied(){
+        if(!denied){
+            denied = true;
+        }else{
+            return;
+        }
+        
+        alert("your game request was denied!");
+        window.location = '/index';
+    }
+</script>
+
+</html>

@@ -1,0 +1,602 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Connect 4</title>
+    <link rel="stylesheet" href="/css/general_layout.css">
+    <link rel="stylesheet" href="/css/profile.css">
+    <script src="/js/generalScript.js"></script>
+</head>
+
+<div class="grid-container">
+    <%- include("../partials/header.ejs",{playerID}); %>
+    
+    
+    <div class="entireBody">
+       
+        <div class="profileBody">
+           <div class="tabBar">
+               <button onclick="openProfileCont('profileTabCont')">Profile</button>
+               <button onclick="openProfileCont('matchHistoryTabCont')">Match History</button>
+               <button onclick="openProfileCont('activeGamesTabCont')">Active Games</button>
+               <button onclick="openProfileCont('statisticsTabCont')">Statistics</button>
+           </div>
+           
+           <div id="profileTabCont" class="tabCont" style="display: none;">
+               <div class="profileTabCont">
+                    <div class="settingUserProfilePic"
+                        style='
+                            background: url(<%- "/profile/profilePic/" + profileID%>);
+                            height: 18.75vh;
+                            width: 16vw;
+                            background-repeat: no-repeat;
+                            background-size: contain;
+                            background-position: 50%;
+                        '
+                    ></div>
+<!--                    <div class="changeUserPicButton"><button style="margin: 0;  top: 50%; left: 25%; transform: translate(-50%, -50%); cursor: pointer;">Change Profile Picture</button></div>-->
+                    <%if(isOwner){%>
+                        <div class="changeUserPicButton" style="overflow-x: hidden;">
+                        <h1 style="font-size:6vmin;"><%-username%></h1>
+                        </div>
+                        <div class="profileSettings" style="overflow-y: scroll; ">
+                           <ul style="list-style: none;">
+                           <li>
+                             <div id="pictureRadioButtons">
+                              <h1>Choose a profile picture:</h1>
+                               <label>
+                                    Picture 1
+                                   <input id="profilePic1" name="pictureSelection" type="radio" checked>
+                               </label>
+                               <label>
+                                    Picture 2
+                                   <input id="profilePic2" name="pictureSelection" type="radio">
+                               </label>
+                               <label>
+                                    Picture 3
+                                   <input id="profilePic3" name="pictureSelection" type="radio">
+                               </label>
+                               <label>
+                                    Picture 4
+                                   <input id="profilePic4" name="pictureSelection" type="radio">
+                               </label>
+                               <label>
+                                    Picture 5
+                                   <input id="profilePic5" name="pictureSelection" type="radio">
+                               </label>
+                               <label>
+                                    Picture 6
+                                   <input id="profilePic6" name="pictureSelection" type="radio">
+                               </label>
+                               <label>
+                                    Picture 7
+                                   <input id="profilePic7" name="pictureSelection" type="radio">
+                               </label>
+                               <label>
+                                    Picture 8
+                                   <input id="profilePic8" name="pictureSelection" type="radio">
+                               </label>
+                               <label>
+                                    Picture 9
+                                   <input id="profilePic9" name="pictureSelection" type="radio">
+                               </label>
+                               <label>
+                                    Picture 10
+                                   <input id="profilePic10" name="pictureSelection" type="radio">
+                               </label>
+                               </div>
+                           </li>
+                           
+                            <li>
+                                <label class="profileSettingText">First name:</label>
+                                <input id="fNameInput" class="profileSettingBox" <%- "value='"+ fName +"'" %>><br>
+                            </li>
+                            <li>
+                                <label class="profileSettingText">Last name:</label>
+                                <input id="lNameInput" class="profileSettingBox" <%- "value='"+ lName +"'" %>><br>
+                            </li>
+                            <li>
+                                <label class="profileSettingText">Username:</label>
+                                <input id="usernameInput" class="profileSettingBox" <%- "value='"+ username +"'" %>><br>
+                            </li>
+                            <li>
+                                <label class="profileSettingText">Email:</label>
+                                <input id="emailInput" class="profileSettingBox" <%- "value='"+ email +"'" %>><br>
+                            </li>
+                            <li>
+                                <label>
+                                    Make account visible to the public:
+                                    <%if(privacy === "private"){%>
+                                        <input id="privacyCheckBox" type="checkbox">
+                                    <%}else{%>
+                                        <input id="privacyCheckBox" type="checkbox" checked>
+                                    <%}%>
+                                </label>
+                            </li>
+                            </ul>
+                            <button onclick="updateSettings()">Save settings</button>
+                        </div>
+                    <%}else if(hasAccess){%>
+                       <div class="changeUserPicButton" style="overflow-x: hidden;">
+                        <h1 style="font-size:6vmin;"><%-username%></h1>
+                        </div>
+                        <div class="profileSettings">
+                           <ul style="list-style: none;">
+                            <li>
+                                <label class="profileSettingText">First name:</label>
+                                <label class="profileSettingBox"><%- "'"+ fName +"'" %></label><br>
+                            </li>
+                            <li>
+                                <label class="profileSettingText">Last name:</label>
+                                <label class="profileSettingBox"><%- "'"+ lName +"'" %></label><br>
+                            </li>
+                            <li>
+                                <label class="profileSettingText">Username:</label>
+                                <label class="profileSettingBox"><%- "'"+ username +"'" %></label><br>
+                            </li>
+                            <li>
+                                <label class="profileSettingText">Email:</label>
+                                <label class="profileSettingBox"><%- "'"+ email +"'" %></label><br>
+                            </li>
+                            </ul>
+                        </div>
+                    <%}else{%>
+                      <div class="changeUserPicButton" style="overflow-x: hidden;">
+                        <h1 style="font-size:6vmin;"><%-username%></h1>
+                        </div>
+                       <div class="profileSettings">Profile is private</div>
+                    <%}%>    
+               </div>
+           </div>
+           <div id="matchHistoryTabCont" class="tabCont" style="display: none;">
+               <%if(hasAccess){%>
+                   <ul class="matchHistoryTabCont">
+
+                      <%for(let i = 0; i < matchHistory.length; i++){%>
+                         <%if(matchHistory[i][0] == "Win!"){%>
+                         <div class="matchHistoryCell" style="background-color: greenyellow; cursor: pointer;"
+                         onclick="location.href='/play/join/<%-matchHistory[i][3]%>?id=<%-playerID%>'">
+                         <%}else{%>
+                         <div class="matchHistoryCell" style="background-color: indianred; cursor: pointer;"
+                         onclick="location.href='/play/join/<%-matchHistory[i][3]%>?id=<%-playerID%>'">
+                         <%}%>   
+
+                              <lable class="matchHistoryOutcome"><%-matchHistory[i][0]%></lable>
+
+                              <%if(matchHistory[i][1] === 'R'){%>
+                                  <div class="playerProfileName"><%-username%></div>
+                                  <div class="enemyProfileName"><%-matchHistory[i][2]%></div>
+                              <%}else{%>
+                                  <div class="playerProfileName"><%-matchHistory[i][2]%></div>
+                                  <div class="enemyProfileName"><%-username%></div>
+                              <%}%>
+                          </div>
+                      <%}%>
+                   </ul>
+                <%}else{%>
+                   <div class="matchHistoryTabCont">Profile is private</div>
+                <%}%>
+           </div>
+           <div id="activeGamesTabCont" class="tabCont" style="display: none;">
+               <%if(hasAccess){%>
+                   <ul class="activeGameTabCont">
+                      <%for(let i = 0; i < activeGames.length; i++){%>
+                          <%if(activeGames[i][0] === 'Your Turn'){%>    
+                          <div class="activeGameCell" style="background-color: aqua; cursor: pointer;"
+                          onclick="location.href='/play/join/<%-activeGames[i][3]%>?id=<%-playerID%>'">
+                          <%}else{%>
+                          <div class="activeGameCell" style="background-color: orange; cursor: pointer;"
+                          onclick="location.href='/play/join/<%-activeGames[i][3]%>?id=<%-playerID%>'">
+                          <%}%> 
+                              <lable class="activeGameTurn"><%-activeGames[i][0]%></lable>
+
+                              <%if(activeGames[i][1] === 'R'){%>
+                                  <div class="playerProfileName"><%-username%></div>
+                                  <div class="enemyProfileName"><%-activeGames[i][2]%></div>
+                              <%}else{%>
+                                  <div class="playerProfileName"><%-activeGames[i][2]%></div>
+                                  <div class="enemyProfileName"><%-username%></div>
+                              <%}%>
+                          </div>
+                      <%}%>
+
+                   </ul>
+                <%}else{%>
+                   <div class="activeGameTabCont">Profile is private</div>
+                <%}%>
+           </div>
+           <div id="statisticsTabCont" class="tabCont" style="display: none;">
+              <%if((hasAccess) || (isOwner)){%>
+               <ul style="list-style: none;">
+                    <li>
+                        <label class="profileSettingText">Total games played:</label>
+                        <label class="profileSettingBox"><%- "'"+ profileStats.totalGames +"'" %></label><br>
+                    </li>
+                    <li>
+                        <label class="profileSettingText">Games won:</label>
+                        <label class="profileSettingBox"><%- "'"+ profileStats.gamesWon +"'" %></label><br>
+                    </li>
+                    <li>
+                        <label class="profileSettingText">Games lost:</label>
+                        <label class="profileSettingBox"><%- "'"+ profileStats.gamesLost +"'" %></label><br>
+                    </li>
+                    <li>
+                        <label class="profileSettingText">Win rate:</label>
+                        <label class="profileSettingBox"><%- "'"+ profileStats.winRate +"%'" %></label><br>
+                    </li>
+                </ul>
+                <%}else{%>
+                    <div class="activeGameTabCont">Profile is private</div>
+                <%}%>
+           </div>
+           
+           
+           
+           
+           
+           
+           
+           
+           
+           
+           
+           
+           
+           
+            <div class="profileBar">
+                <div class="userProfilePic"
+                   style='
+                        background: url(<%- "/profile/profilePic/" + profileID%>);
+                        height: 13.6363636363636363vh;
+                        width: 8vw;
+                        outline: inherit;
+                        background-repeat: no-repeat;
+                        background-size: contain;
+                        background-position: 50%;
+                        grid-area: userProfilePic;
+                   '
+                ></div>
+                <div class="userProfileName"><%- username %></div>
+                <%if(isOwner){%>
+                <button class="addFriendButton" onclick="startSearching()">Add a Friend</button>
+                <button class="viewRequestButton" onclick="viewRequests()">View Requests</button>
+                <%}else if(isFriend){%>
+                <button class="addFriendButton" onclick="removeFriend('<%-profileID%>')">Remove Friend</button>
+                <%}else{%>
+                <button class="addFriendButton" onclick="sendFriendReq('<%-profileID%>')">Add Friend</button>
+                <%}%>
+            </div>
+           
+           
+           <div id="friendList" class="friendList">
+               <%for(let i = 0; i < friendsList.length; i++){%>
+                   <div class="friendBlock" onclick='
+                       location.href="/profile/<%-friendsList[i][0]%>?tab=profileTabCont"'
+                       style="cursor:pointer;">
+                        <div class="friendProfilePic" style='
+                            background: url(<%- "/profile/profilePic/" + friendsList[i][0]%>);
+                            background-repeat: no-repeat;
+                            background-size: contain;
+                            background-position: 50%;
+                            height: 6.81818181818181818vh;
+                            width: 8vw;
+                        '></div>
+                        <div class="friendProfileName"><%-friendsList[i][1]%></div>
+                        <%if(friendsList[i][2] === "True"){%>
+                            <div class="friendProfileStatus">Online</div>
+                        <%}else{%>
+                            <div class="friendProfileStatus">Offline</div>
+                        <%}%>
+                   </div>
+               <%}%>
+           </div>
+        </div>
+    
+    </div>
+    
+    
+    <%- include("../partials/footer.ejs",{playerID, gameIDs, enemyIDs}); %>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<script>
+    /*openProfileCont will be called whenever a tab button is clicked in the profile page. 
+    It takes one argument which is the id of the content div it need to display. All other content divs will be hidden*/
+    function openProfileCont(profileContId){
+        
+        /*hides all content windows*/
+        var cont = document.getElementsByClassName("tabCont");
+        for(var i = 0; i < cont.length; i++){
+            cont[i].style.display = "none";
+        }
+        
+        /*show the selected tabs content window*/
+        document.getElementById(profileContId).style.display = "block";
+    } 
+</script>
+
+<script>
+    /*setup function that is called when the page loads*/
+    window.onload = function(){
+        let parameters = location.search.substring(1).split("&");
+        let temp = parameters[0].split("=");
+        let tab = temp[1];
+        if(tab != null){
+            openProfileCont(tab);
+        }
+        else{
+            openProfileCont("profileTabCont");
+        }
+    }
+</script>
+
+
+<script>
+    /*This function will add a friend to your friend list
+    NOTE: this function will require information from a server to retrieve a list of friends.
+    For now it will just add a placeholder friend with default name, status and icon*/
+    
+    var isSearching = false;
+    var addButtonClicked = false;
+    let resultList = [];
+    
+    function showUsers(){ 
+        resultList = JSON.parse(resultList);
+        for(var i = 0; i < resultList.length; i++){
+            var resultUser = document.createElement('div');
+            resultUser.setAttribute('class', 'friendBlock');
+            resultUser.setAttribute('id', i);
+            resultUser.onclick = function(){
+                if(!addButtonClicked){
+                    location.href="/profile/" + resultList[Number(this.getAttribute('id'))][0] + "?tab=profileTabCont"
+                }
+                addButtonClicked = false;
+            }
+            resultUser.style = 'cursor:pointer;';
+            resultUser.innerHTML = "<div class=\"friendProfilePic\" style='background: url(/profile/profilePic/" + resultList[i][0] + "); background-repeat: no-repeat; background-size: contain; background-position: 50%; height: 6.81818181818181818vh; width: 8vw;'></div></div><div class=\"friendProfileName\">" + resultList[i][1] + "</div><div class=\"friendProfileStatus\">" + resultList[i][2] + "<button onclick=\"sendFriendReq('" + resultList[i][0] + "')\" style=\"float: right; width: 50%; height: 100%;\">ADD</button></div>";
+
+            document.getElementById("friendList").appendChild(resultUser);
+        }  
+    }
+    
+    let searchingUser = false;
+    
+    function startSearching(){
+        if(!searchingUser){
+            searchingUser = true;
+        }else{
+            window.location.reload();
+        }
+        
+        searchUsers(null);
+    }
+    
+    function searchUsers(searchQuery){
+        if(!isSearching){
+            var friendSearchBar = document.createElement('input');
+            friendSearchBar.setAttribute('class', 'friendSearchBar');
+            friendSearchBar.setAttribute('oninput', 'searchUsers(this.value)');
+            friendSearchBar.setAttribute('placeholder', 'SEARCH FOR A PLAYER');
+            friendSearchBar.setAttribute('style', 'width:inherit;');
+            friendSearchBar.value = searchQuery;
+            document.getElementById("friendList").appendChild(friendSearchBar);
+            isSearching = true;
+        }
+        
+        if((searchQuery == null) || (searchQuery === "")){
+            searchQuery = "*";
+        }
+        
+        req = new XMLHttpRequest();
+        req.onreadystatechange = function() {
+            if(this.readyState==4 && this.status==200){
+                elements = document.getElementById("friendList").getElementsByClassName("friendBlock");
+                while (elements[0]) {
+                    elements[0].parentNode.removeChild(elements[0]);
+                }
+                resultList = this.response;
+                showUsers();
+            }
+        }
+        req.open("GET", "/users/search?queryStr=" + searchQuery);
+        req.send();
+    }
+    
+    
+    
+    function showRequests(){
+        resultList = JSON.parse(resultList);
+        for(var i = 0; i < resultList.length; i++){
+            var resultReq = document.createElement('div');
+            resultReq.setAttribute('class', 'friendBlock');
+//            resultUser.setAttribute('id', i);
+//            resultUser.onclick = function(){
+//                if(!addButtonClicked){
+//                    location.href="/profile/" + resultList[Number(this.getAttribute('id'))][0] + "?tab=profileTabCont"
+//                }
+//                addButtonClicked = false;
+//            }
+//            resultReq.style = 'cursor:pointer;';
+            if(resultList[i][2] == 0){
+                resultReq.innerHTML = "<div class=\"friendProfilePic\" style='background: url(/profile/profilePic/" + resultList[i][0] + "); background-repeat: no-repeat; background-size: contain; background-position: 50%; height: 6.81818181818181818vh; width: 8vw;'></div></div><div class=\"friendProfileName\">" + resultList[i][1] + "<button onclick=\"acceptFriendReq('" + resultList[i][0] + "')\" style=\"float: right; width: 20%; height: 100%; margin-right: 12px;\">Accept</button></div><div class=\"friendProfileStatus\">Sent you a friend request!<button onclick=\"denyFriendReq('" + resultList[i][0] + "')\" style=\"float: right; width: 20%; height: 100%; margin-right: 12px;\">Deny</button></div>";
+            }
+            else{
+                resultReq.innerHTML = "<div class=\"friendProfilePic\" style='background: url(/profile/profilePic/" + resultList[i][0] + "); background-repeat: no-repeat; background-size: contain; background-position: 50%; height: 6.81818181818181818vh; width: 8vw;'></div></div><div class=\"friendProfileName\">" + resultList[i][1] + "<button onclick=\"acceptGameReq('" + resultList[i][0] + "', '"+ resultList[i][3] +"')\" style=\"float: right; width: 20%; height: 100%; margin-right: 12px;\">Accept</button></div><div class=\"friendProfileStatus\">Sent you a game request!<button onclick=\"denyGameReq('" + resultList[i][0] + "')\" style=\"float: right; width: 20%; height: 100%; margin-right: 12px;\">Deny</button></div>";
+            }
+
+            document.getElementById("friendList").appendChild(resultReq);
+        }  
+    }
+    
+    let hasClicked = false;
+    
+    function viewRequests(){
+        if(!hasClicked){
+            hasClicked = true;
+        }else{
+            window.location.reload();
+        }
+        
+        req = new XMLHttpRequest();
+        req.onreadystatechange = function() {
+            if(this.readyState==4 && this.status==200){
+                elements = document.getElementById("friendList").children;
+                while (elements[0]) {
+                    elements[0].parentNode.removeChild(elements[0]);
+                }
+                resultList = this.response;
+                showRequests();
+            }
+        }
+        req.open("GET", "/users/getRequests");
+        req.send();
+    }
+    
+    
+    
+    function sendFriendReq(id){
+        addButtonClicked=true;
+        alert("Friend Request Sent!");
+        console.log("adding friend with id: " + id);
+        req = new XMLHttpRequest();
+        
+        req.open("POST", "/users/sendFriendRequest");
+        req.send("friendID=" + id);
+        window.location.reload();
+    }
+    
+    
+    
+    function acceptFriendReq(id){
+        alert("Friend Request Accepted!");
+        req = new XMLHttpRequest();
+        
+        req.open("PUT", "/users/acceptFriendRequest");
+        req.send("friendID=" + id);
+        window.location.reload();
+    }
+    
+    
+    
+    function denyFriendReq(id){
+        alert("Friend Request Denied!");
+        req = new XMLHttpRequest();
+        
+        req.open("DELETE", "/users/denyFriendRequest/" + id);
+        req.send();
+        window.location.reload();
+    }
+    
+    
+    
+    function acceptGameReq(id, gameID){
+        alert("Game Request Accepted!");
+        req = new XMLHttpRequest();
+        
+        req.open("PUT", "/games/acceptChallenge");
+        req.send("friendID=" + id);
+        window.location = "/play/join/" + gameID;
+    }
+    
+    
+    
+    function denyGameReq(id){
+        alert("Game Request Denied!");
+        req = new XMLHttpRequest();
+        
+        req.open("DELETE", "/games/denyChallenge/" + id);
+        req.send();
+        window.location.reload();
+    }
+    
+    
+    
+    function removeFriend(id){
+        alert("Friend Removed!");
+        console.log("removing friend with id: " + id);
+        req = new XMLHttpRequest();
+        
+        req.open("DELETE", "/users/friend/" + id);
+        req.send();
+        window.location.reload();
+    }
+</script>
+
+
+
+
+<script>
+    function updateSettings(){
+        var profilePrivacy = "private";
+        if(document.getElementById("privacyCheckBox").checked){
+            profilePrivacy = "public";
+        }
+        req = new XMLHttpRequest();
+        
+        let profilePic = "1";
+        if(document.getElementById('profilePic1').checked) {
+            profilePic = "1";
+        }else if(document.getElementById('profilePic2').checked) {
+            profilePic = "2";
+        }else if(document.getElementById('profilePic3').checked) {
+            profilePic = "3";
+        }else if(document.getElementById('profilePic4').checked) {
+            profilePic = "4";
+        }else if(document.getElementById('profilePic5').checked) {
+            profilePic = "5";
+        }else if(document.getElementById('profilePic6').checked) {
+            profilePic = "6";
+        }else if(document.getElementById('profilePic7').checked) {
+            profilePic = "7";
+        }else if(document.getElementById('profilePic8').checked) {
+            profilePic = "8";
+        }else if(document.getElementById('profilePic9').checked) {
+            profilePic = "9";
+        }else if(document.getElementById('profilePic10').checked) {
+            profilePic = "10";
+        }
+        
+        console.log("Sending:");
+        console.log("fName=" + document.getElementById("fNameInput").value + "&lName=" + document.getElementById("lNameInput").value + "&username=" + document.getElementById("usernameInput").value + "&email=" + document.getElementById("emailInput").value + "&privacy=" + profilePrivacy + "&profilePic=" + profilePic);
+        
+        req.open("PUT", "/users/editProfile");
+        req.send("fName=" + document.getElementById("fNameInput").value + "&lName=" + document.getElementById("lNameInput").value + "&username=" + document.getElementById("usernameInput").value + "&email=" + document.getElementById("emailInput").value + "&privacy=" + profilePrivacy + "&profilePic=" + profilePic);
+        
+        alert("Profile Settings Saved!");
+        window.location.reload();
+    }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</html>

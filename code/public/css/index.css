@@ -1,0 +1,73 @@
+html{
+    user-select: none;
+}
+
+.menuBody{
+    background: url("../img/big_red_chip.jpg"); /*game chip img*/
+    background-repeat: no-repeat; /*don't allow game chip img to repeat*/
+    background-size: contain; /*Make sure the entire game chip image is displayed and doesn't get cut off*/
+    background-position:center;
+    height: 81.8181818181vh;
+    width: 100vw;
+}
+
+#mainMenuButton {
+    cursor: pointer;
+}
+
+.button-grid-container {
+    display: grid;
+    grid-template-areas:
+        'button1 button2'
+        'button3 button3';
+    grid-gap: 50px;
+    height: 81.8181818181vh;
+    width: 100vw;
+}
+
+.button1 { 
+    grid-area: button1; /*designate grid-area for button-grid-container*/
+    
+    /*push this to the left, because this grid starts from the left of the screen to the middle.
+    pushing it to the left will leave it in the middle*/
+    margin-left: auto; 
+    
+    /*this code will push the text to the bottom of the div*/
+    display: flex;
+    align-items: flex-end;
+}
+
+.button2 {
+    grid-area: button2; /*designate grid-area for button-grid-container*/
+    
+    /*push this to the right, because this grid starts from the right of the screen to the middle.
+    pushing it to the right will leave it in the middle*/
+    margin-right: auto;
+    
+    /*this code will push the text to the bottom of the div*/
+    display: flex;
+    align-items: flex-end;
+}
+
+.button3 { 
+    background-position: top !important; /*The !important tag overrides your parent's attribute*/
+    
+    grid-area: button3; /*designate grid-area for button-grid-container*/
+    
+    /*center the div*/
+    margin-left: auto;
+    margin-right: auto;
+    
+    /*note: no need to push the text around, since this div is already at the right place
+    (bottom of the screen, centered)*/
+}
+
+
+
+
+
+
+
+
+
+

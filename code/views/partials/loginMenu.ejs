@@ -1,0 +1,109 @@
+<!------------------------------------------------------------------------START OF LOGIN MENU---------------------------------------------------------->
+<div style="visibility: hidden" id="loginMenu" class="basicPopUpMenu">
+    <div class="xbarLeft" style="background-color: red;"></div>
+    
+    <div class="xbarRight">
+       <img src="/img/red_xBox.png" style="float: right; cursor: pointer; height: 100%;" onclick="toggleDisplayMenu('loginMenu')">
+    </div>
+   
+    <div class="basicPopUpMenuCell" id="logInBox">
+        <div>
+            <input type='username' placeholder="username" id="usernameLogin" style='font-size:5vmin; width: 45vw;'> <br>
+            <input type='password' placeholder="password" id="passwordLogin" style='font-size:5vmin; width: 45vw'> <br><br><br>
+            <button  style="background-color: grey;
+                font-size:5vmin;
+                width: 45vw;
+                height: 6vw;
+                "
+                onclick="login()"
+                id="logInButton">
+                Login
+            </button>
+            <br><br>
+            <button  style="background-color: grey;
+                font-size:5vmin;
+                width: 45vw;
+                "
+                onclick="createAccSubMenu()">
+                ...or Click here to create an account!
+            </button>
+        </div>
+    </div>
+</div>
+
+<div style="visibility: hidden" id="createAccountMenu" class="basicPopUpMenu">
+    <div class="xbarLeft" style="background-color: red;"></div>
+    
+    <div class="xbarRight">
+       <img src="/img/red_xBox.png" style="float: right; cursor: pointer; height: 100%;" onclick="toggleDisplayMenu('createAccountMenu')">
+    </div>
+   
+    <div class="basicPopUpMenuCell" id="createAccountBox">
+        <div>
+            <input type='username' placeholder="username" id="usernameCreate" style='font-size:5vmin; width: 45vw;'> <br>
+            <input type='password' placeholder="password" id="passwordCreate" style='font-size:5vmin; width: 45vw'> <br><br><br>
+            <button  style="background-color: grey;
+                font-size:5vmin;
+                width: 45vw;
+                height: 6vw;
+                "
+                onclick="createAccount()">
+                Create Account
+            </button>
+        </div>
+    </div>
+</div>
+
+<script>
+    function login(){
+        let username = document.getElementById("usernameLogin").value;
+        let password = document.getElementById("passwordLogin").value;
+        
+        if(username == '' || username == null ||
+          password == '' || password == null){
+            alert("please fill out the username and password fields!");
+            return;
+        }
+        
+        req = new XMLHttpRequest();
+        req.onreadystatechange = function() {
+            if(this.readyState==4 && this.status==200){
+                window.location.reload();
+            }else if(this.readyState==4 && this.status==401){
+                alert("Invalid username/password! Please try again.");
+            }else if(this.readyState ==4 && this.status == 403){
+                alert("Already logged in!");
+            }
+        }
+        req.open("POST", "/account/login");
+        req.send("username=" + username + "&password=" + password);
+    }
+    
+    function createAccSubMenu(){
+        toggleDisplayMenu('loginMenu');
+        toggleDisplayMenu('createAccountMenu');
+    }
+    
+    function createAccount(){
+        let username = document.getElementById("usernameCreate").value;
+        let password = document.getElementById("passwordCreate").value;
+        
+        if(username == '' || username == null ||
+          password == '' || password == null){
+            alert("please fill out the username and password fields!");
+            return;
+        }
+        
+        req = new XMLHttpRequest();
+        req.onreadystatechange = function() {
+            if(this.readyState==4 && this.status==201){
+                window.location.reload();
+            }else if(this.readyState==4 && this.status==409){
+                alert("Username already exists! (or you entered a really bad password)")
+            }
+        }
+        req.open("POST", "/account/create");
+        req.send("username=" + username + "&password=" + password);
+    }
+</script>
+<!------------------------------------------------------------------------END OF LOGIN MENU---------------------------------------------------------->

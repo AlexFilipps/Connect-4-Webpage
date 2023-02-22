@@ -1,0 +1,116 @@
+{
+  "0000001": {
+    "fName": "Cuera",
+    "lName": "Popolopolis",
+    "username": "Legend27",
+    "password": "PowerCreep",
+    "online": "False",
+    "email": "cuera@hotmail.com",
+    "privacy": "public",
+    "profilePic" : 1,
+    "activeGames": [
+      "0000001",
+      "0000002",
+      "0000003",
+      "0000004"
+    ],
+    "prevGames": [
+      "0000005",
+      "0000006",
+      "0000007",
+      "0000008"
+    ],
+    "friendsList": [
+      "0000002",
+      "0000003"
+    ],
+    "friendRequests": [],
+    "gameRequests": []
+  },
+  "0000002": {
+    "fName": "Christina",
+    "lName": "Pepperjack",
+    "username": "BuiltDifferent56",
+    "password": "PurpleDino",
+    "online": "False",
+    "email": "christina.pepperjack@hotmail.com",
+    "privacy": "private",
+    "profilePic" : 2,
+    "activeGames": [
+      "0000001"
+    ],
+    "prevGames": [
+      "0000005"
+    ],
+    "friendsList": [
+      "0000001"
+    ],
+    "friendRequests": [],
+    "gameRequests": []
+  },
+  "0000003": {
+    "fName": "Mike",
+    "lName": "Peep",
+    "username": "goalPost550",
+    "password": "ChocolateCake",
+    "online": "False",
+    "email": "mike.peep@hotmail.com",
+    "privacy": "public",
+    "profilePic" : 3,
+    "activeGames": [
+      "0000002"
+    ],
+    "prevGames": [
+      "0000006"
+    ],
+    "friendsList": [
+      "0000001",
+      "0000004"
+    ],
+    "friendRequests": [],
+    "gameRequests": []
+  },
+  "0000004": {
+    "fName": "Timmy",
+    "lName": "The Tourtouse",
+    "username": "TheHareDestroyer",
+    "password": "PastyMonky",
+    "online": "False",
+    "email": "timmy_yourfavouriteHareDestroyer@hotmail.com",
+    "privacy": "public",
+    "profilePic" : 4,
+    "activeGames": [
+      "0000003"
+    ],
+    "prevGames": [
+      "0000007"
+    ],
+    "friendsList": [
+      "0000003",
+      "0000005"  
+    ],
+    "friendRequests": [],
+    "gameRequests": []
+  },
+  "0000005": {
+    "fName": "Sarah",
+    "lName": "Moussa",
+    "email": "prettiestGirlInTheWorld@outlook.com",
+    "username": "stoneColdKilla",
+    "password": "TastyCat",
+    "online": "False",
+    "privacy": "public",
+    "profilePic" : 5,
+    "activeGames": [
+      "0000004"    
+    ],
+    "prevGames": [
+      "0000008"
+    ],
+    "friendsList": [
+        "0000004"
+    ],
+    "friendRequests": [],
+    "gameRequests": []
+  }
+}

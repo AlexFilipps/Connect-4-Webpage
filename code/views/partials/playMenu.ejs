@@ -1,0 +1,258 @@
+<script src="/js/ToggleDisplayMenu.js"></script>
+
+<!------------------------------------------------------------------------START OF PLAY MENU--------------------------------------------------->
+<div style="visibility: hidden" id="playMenu" class="playMenu" style="position:absolute;">
+    <div class="xbarLeft"></div>
+    
+    <div class="xbarRight">
+       <img src="/img/red_xBox.png" style="float: right; cursor: pointer; height: 100%;" onclick="toggleDisplayMenu('playMenu')">
+    </div>
+   
+    <a class="playVSFriendPrompt" onclick="playFriend()">
+        <h1>Play <br>Vs<br>a Friend</h1>
+    </a>
+    
+    <div class="friendRadioButtonBar">
+
+    </div>
+    
+    <a class="playOnlinePrompt" onclick="playOnline()">
+        <h1>Play <br> Online</h1>
+    </a>
+    
+    <div class="onlineRadioButtonBar">
+        <label class="publicRadioButton">
+            <input type="radio" name="playOnlineRadio" value="public" id="onlinePublicRadio"  checked="checked" autocomplete="off"> <br> public
+        </label>
+        <label class="friendRadioButton">
+            <input type="radio" name="playOnlineRadio" value="friends" id="onlineFriendRadio"> <br> friends
+        </label>
+        <label class="privateRadioButton">
+            <input type="radio" name="playOnlineRadio" value="private" id="onlinePrivateRadio"> <br> private
+        </label>
+    </div>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div style="visibility: hidden; line-height:3vh;" id="playFriendMenu" class="basicPopUpMenu">
+    <div class="xbarLeft" style="background-color: blue;"></div>
+    
+    <div class="xbarRight" style='background-color: blue;'>
+       <img src="/img/blue_xBox.png" style="float: right; cursor: pointer; height: 100%;" onclick="toggleDisplayMenu('playFriendMenu')">
+    </div>
+   
+    <div class="basicPopUpMenuCell" style='font-size:12vmin; background-color: blue;'>
+        <div>
+            <button style="
+                font-size:5vmin;
+                width: 60vw;
+                height: 20vh;"
+                onclick="toggleOffPlayMenu('challengeFriendMenu')"
+                id="logInButton">Challenge a Friend 
+            </button>
+            <br><br>
+            <button style="
+                font-size:5vmin;
+                width: 60vw;
+                height: 20vh;"
+                onclick="toggleOffPlayMenu('comingSoonMenu')"
+                id="logInButton">Create an Invite Link
+            </button>
+        </div>
+    </div>
+</div>
+
+<div style="visibility: hidden; line-height:3vh;" id="challengeFriendMenu" class="basicPopUpMenu">
+    <div class="xbarLeft" style="background-color: blue;"></div>
+    
+    <div class="xbarRight" style='background-color: blue;'>
+       <img src="/img/blue_xBox.png" style="float: right; cursor: pointer; height: 100%;" onclick="toggleDisplayMenu('challengeFriendMenu')">
+    </div>
+   
+    <div class="basicPopUpMenuCell" style='background-color: blue; '>
+        <div>
+            <div>
+               <h1 style="font-size:3vmin; ">Pick a friend to Challenge</h1>
+            </div>
+           
+            <div id="challengeList" class="challengeList">
+               <%if(friendsList != null && friendsList.length != 0){%>
+                   <%for(let i = 0; i < friendsList.length; i++){%>
+                       <div class="challengeBlock" onclick='sendChallenge("<%-friendsList[i][0]%>")'
+                           style="cursor:pointer;">
+                            <div class="challengeProfilePic" style='
+                                background: url(<%- "/profile/profilePic/" + friendsList[i][0]%>);
+                                background-repeat: no-repeat;
+                                background-size: contain;
+                                background-position: 50%;
+                                height: 6.81818181818181818vh;
+                                width: 8vw;
+                            '></div>
+                            <div class="challengeProfileName"><%-friendsList[i][1]%></div>
+                            <%if(friendsList[i][2] === "True"){%>
+                                <div>Online</div>
+                            <%}else{%>
+                                <div>Offline</div>
+                            <%}%>
+                       </div>
+                   <%}%>
+               <%}%>
+            </div>
+           
+            <div class="friendRadioButtonBar" style="height:8vh;">
+                <label class="publicRadioButton">
+                    <input type="radio" name="playFriendRadio" value="public" id="friendPublicRadio" checked> <br> public
+                </label>
+                <label class="friendRadioButton">
+                    <input type="radio" name="playFriendRadio" value="friends" id="friendFriendOnlyRadio"> <br> friends
+                </label>
+                <label class="privateRadioButton">
+                    <input type="radio" name="playFriendRadio" value="private" id="friendPrivateRadio"> <br> private
+                </label>
+            </div> 
+           
+        </div>
+    </div>
+        
+</div>
+
+<style>
+/*friendList and related classes
+--------------------------------------------------*/
+
+.challengeList{
+    width: 32vw;
+    outline: inherit;
+    grid-area: challengeList;
+    height: 50vh;
+    overflow-x: hidden;
+    font-size:2vmin;
+}
+
+.challengeBlock{
+    outline: inherit;
+    width: 32vw;
+    height: 6.81818181818181818vh;
+    display: grid;
+    grid-template-columns: 1fr 3fr;
+    grid-template-rows: 1fr 1fr;
+    grid-template-areas: 
+        'challengeProfilePic challengeProfileName'
+        'challengeProfilePic challengeProfileStatus';
+    background-color: darkcyan;
+}
+
+.challengeProfilePic{
+    grid-area: challengeProfilePic;
+}
+
+.challengeProfileName{
+    margin: 0px;
+    padding: 0px;
+    grid-area: challengeProfileName;
+    height: 3.409090909090909vh;
+    width: 24vw;
+}
+
+.challengeProfileStatus{
+    margin: 0px;
+    padding: 0px;
+    grid-area: challengeProfileStatus;
+    height: 3.409090909090909vh;
+    width: 24vw;
+}
+
+/*------------------------------------------------*/
+</style>
+
+
+
+<script>
+    function toggleOffPlayMenu(menu){
+        toggleDisplayMenu('playFriendMenu');
+        toggleDisplayMenu(menu);
+    }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<script>
+    //this code creates the correct url to create a game
+    function playOnline(){
+        let gameOptions = 'public'; //public game by default, if none selected
+        if(document.getElementById('onlinePublicRadio').checked) {
+            gameOptions = 'public';
+        }else if(document.getElementById('onlineFriendRadio').checked) {
+            gameOptions = 'friends-only';
+        }else if(document.getElementById('onlinePrivateRadio').checked) {
+            gameOptions = 'private';
+        }
+        
+        let req = new XMLHttpRequest();
+        let newGameID = null;
+        req.onreadystatechange = function() {
+            if(this.readyState==4 && this.status==201){
+                newGameID = this.response;
+                window.location.href = "/play/join/" + newGameID;
+            }else if(this.readyState==4 && this.status==503){
+                alert("already in queue!");
+            }else if(this.readyState==4 && this.status==403){
+                alert("You must be logged in to queue a game");
+            }
+        }
+        req.open("POST", "/games/createGame");
+        req.send("privacy=" + gameOptions + "&gamemode=connect4");
+    }
+    
+    //this code creates the correct url to create a game
+    function playFriend(){
+        toggleDisplayMenu('playMenu');
+        toggleDisplayMenu('playFriendMenu');
+    }
+    
+    function sendChallenge(id){
+        let gameOptions = 'public'; //public game by default, if none selected
+        if(document.getElementById('friendPublicRadio').checked) {
+            gameOptions = 'public';
+        }else if(document.getElementById('friendFriendOnlyRadio').checked) {
+            gameOptions = 'friends-only';
+        }else if(document.getElementById('friendPrivateRadio').checked) {
+            gameOptions = 'private';
+        }
+        
+        let req = new XMLHttpRequest();
+        let newGameID = null;
+        req.onreadystatechange = function() {
+            if(this.readyState==4 && this.status==201){
+                newGameID = this.response;
+                window.location.href = "/play/join/" + newGameID;
+            }
+        }
+        
+        console.log("sending ")
+        req.open("POST", "/games/challengeFriend");
+        req.send("friendID=" + id + "&privacy=" + gameOptions);
+    }
+</script>
+<!------------------------------------------------------------------------END OF PLAY MENU---------------------------------------------------------->

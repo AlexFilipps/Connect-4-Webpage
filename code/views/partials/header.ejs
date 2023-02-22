@@ -1,0 +1,43 @@
+<%- include("./comingSoonMenu.ejs"); %>
+<%- include("./playMenu.ejs", {friendsList}); %>
+<%- include("../partials/loginMenu.ejs"); %>
+
+<div class="navBar" id="navBarButtons" >
+        <img draggable="false"   class="navBarItem" id="navToggleButton"
+                src="/img/navBar/navBarButton.png" 
+                onclick="toggleNavBar()">
+
+        <img draggable="false" src="/img/navBar/play_chip.png" class="navBarItem"
+            onclick="toggleDisplayMenu('playMenu')">
+        <img draggable="false" src="/img/navBar/main_menu.png" class="navBarItem"
+            onclick="location.href='/index'">
+        
+        <%if(playerID != null){%>
+            <img draggable="false" src="/img/navBar/profile_chip.png" class="navBarItem"
+                onclick="location.href='/profile/<%-playerID%>?tab=profileTabCont'">
+            <img draggable="false" src="/img/navBar/match_history_chip.png" class="navBarItem"
+                onclick="location.href='/profile/<%-playerID%>?tab=matchHistoryTabCont'">
+            <img draggable="false" src="/img/navBar/active_games_chip.png" class="navBarItem"
+                onclick="location.href='/profile/<%-playerID%>?tab=activeGamesTabCont'">
+            <img draggable="false" src="/img/navBar/statistics_chip.png" class="navBarItem"
+                onclick="location.href='/profile/<%-playerID%>?tab=statisticsTabCont'">
+            <img draggable="false" src="/img/navBar/logout_chip.png" class="navBarItem"
+            onclick="logout()">
+        <%}else{%>
+            <img draggable="false" src="/img/navBar/create_acc_chip.png" class="navBarItem"
+            onclick="toggleDisplayMenu('loginMenu')">
+        <%}%>
+</div>
+
+<script>
+function logout(){
+    req = new XMLHttpRequest();
+    req.onreadystatechange = function() {
+        if(this.readyState==4 && this.status==200){
+            window.location.href = "/";
+        }
+    }
+    req.open("GET", "/account/logout");
+    req.send();
+}
+</script>

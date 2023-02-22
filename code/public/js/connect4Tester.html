@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Connect 4 (FOR TESTING)</title>
+    <script src="ClassicConnect4Game.js"></script>
+</head>
+<body>
+    <button onclick="ClassicConnect4Game.startNewGame();">Start New Game</button>
+    <br>
+    <button onclick="makeMoveHTML()">Make move</button>
+    <input id="inputCol">
+    <button onclick="resignHTML('B')">Resign Blue</button>
+    <button onclick="resignHTML('R')">Resign Red</button>
+    <button onclick="drawHTML('B')">Offer Draw Blue</button>
+    <button onclick="drawHTML('R')">Offer Draw Red</button>
+    
+</body>
+
+<script>
+function makeMoveHTML(){
+    let col = Number(document.getElementById("inputCol").value) -1;
+    let currPlayer = game.currPlayer;
+    let rowLandedOn = game.makeMove(col);
+    
+    if(rowLandedOn == -1){
+        console.log("INVALID MOVE!");
+    }else{
+        console.log(currPlayer + " lands on " + rowLandedOn)
+    }
+    
+    console.log("here is board...");
+    let myStr = '';
+    for(let i = 5; i >= 0; i--){
+        for(let j = 0; j < 7; j++){
+            if(game.gameBoard[j][i] == ' '){
+                myStr += '_';
+            }else{
+                myStr += game.gameBoard[j][i];
+            }
+        }
+        myStr += '\n';
+    }
+    
+    console.log(myStr);
+    
+    console.log("here is current game history:")
+    console.log(game.turnHistory);
+}
+
+function resignHTML(player){
+    if(game.resign(player)){
+        console.log(player + " resigns!");
+    }else{
+        console.log("CANNOT RESIGN!");
+    }
+}
+
+function drawHTML(player){
+    let retVal = game.offerDraw(player);
+    console.log("Here is the return val of offerDraw: " + retVal);
+}
+</script>
+
+</html>

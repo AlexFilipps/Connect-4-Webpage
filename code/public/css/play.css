@@ -1,0 +1,298 @@
+.gameMenu{
+    outline: 2px solid black;
+    display: grid;
+    grid-template-columns: 8fr 3fr;
+    grid-template-rows: 6fr 1fr 6fr 1fr 1fr;
+    height: 81.81818181818vh;
+    width: 80vw;
+    margin: auto;
+    grid-template-areas: 
+        'gameScreen historyMenu'
+        'gameScreen gameButtonMenu'
+        'gameScreen chatMenu'
+        'playerDisplay chatMenu'
+        'playerDisplay chatBar';
+}
+
+
+
+
+
+/*gameScreen and related classes
+--------------------------------------------------*/
+
+.gameScreen{
+    outline: inherit;
+    grid-area: gameScreen;
+    height: 70.90909090909090909vh;
+    width: 58.1818181818181818vw;
+}
+
+
+#square {
+    float:left;
+    position: relative;
+    width: 14.285%;
+    padding-bottom: 14.285%; /* = width for a 1:1 aspect ratio */
+    overflow:hidden;
+    user-drag: none; 
+}
+
+/*------------------------------------------------*/
+
+/*Cell Definitions
+--------------------------------------------------*/
+.cell00{grid-area: cell00; outline: 2px solid black;}
+.cell01{grid-area: cell01; outline: 2px solid black;}
+.cell02{grid-area: cell02; outline: 2px solid black;}
+.cell03{grid-area: cell03; outline: 2px solid black;}
+.cell04{grid-area: cell04; outline: 2px solid black;}
+.cell05{grid-area: cell05; outline: 2px solid black;}
+.cell06{grid-area: cell06;}
+.cell10{grid-area: cell10; outline: 2px solid black;}
+.cell11{grid-area: cell11; outline: 2px solid black;}
+.cell12{grid-area: cell12; outline: 2px solid black;}
+.cell13{grid-area: cell13; outline: 2px solid black;}
+.cell14{grid-area: cell14; outline: 2px solid black;}
+.cell15{grid-area: cell15; outline: 2px solid black;}
+.cell16{grid-area: cell16;}
+.cell20{grid-area: cell20; outline: 2px solid black;}
+.cell21{grid-area: cell21; outline: 2px solid black;}
+.cell22{grid-area: cell22; outline: 2px solid black;}
+.cell23{grid-area: cell23; outline: 2px solid black;}
+.cell24{grid-area: cell24; outline: 2px solid black;}
+.cell25{grid-area: cell25; outline: 2px solid black;}
+.cell26{grid-area: cell26;}
+.cell30{grid-area: cell30; outline: 2px solid black;}
+.cell31{grid-area: cell31; outline: 2px solid black;}
+.cell32{grid-area: cell32; outline: 2px solid black;}
+.cell33{grid-area: cell33; outline: 2px solid black;}
+.cell34{grid-area: cell34; outline: 2px solid black;}
+.cell35{grid-area: cell35; outline: 2px solid black;}
+.cell36{grid-area: cell36;}
+.cell40{grid-area: cell40; outline: 2px solid black;}
+.cell41{grid-area: cell41; outline: 2px solid black;}
+.cell42{grid-area: cell42; outline: 2px solid black;}
+.cell43{grid-area: cell43; outline: 2px solid black;}
+.cell44{grid-area: cell44; outline: 2px solid black;}
+.cell45{grid-area: cell45; outline: 2px solid black;}
+.cell46{grid-area: cell46;}
+.cell50{grid-area: cell50; outline: 2px solid black;}
+.cell51{grid-area: cell51; outline: 2px solid black;}
+.cell52{grid-area: cell52; outline: 2px solid black;}
+.cell53{grid-area: cell53; outline: 2px solid black;}
+.cell54{grid-area: cell54; outline: 2px solid black;}
+.cell55{grid-area: cell55; outline: 2px solid black;}
+.cell56{grid-area: cell56;}
+.cell60{grid-area: cell60; outline: 2px solid black;}
+.cell61{grid-area: cell61; outline: 2px solid black;}
+.cell62{grid-area: cell62; outline: 2px solid black;}
+.cell63{grid-area: cell63; outline: 2px solid black;}
+.cell64{grid-area: cell64; outline: 2px solid black;}
+.cell65{grid-area: cell65; outline: 2px solid black;}
+.cell66{grid-area: cell66;}
+/*------------------------------------------------*/
+
+
+
+
+
+
+/*historyMenu and related classes
+--------------------------------------------------*/
+
+.historyMenu{
+    outline: inherit;
+    grid-area: historyMenu;
+    height: 32.727272727272vh;
+    width: 21.818181818181818vw;
+    overflow-y: scroll;
+}
+
+.historyTable{
+    width: 100%;
+    text-align: left;
+}
+
+.historyTable tr{
+}
+
+.historyTable tr:nth-child(even){
+    background-color: gainsboro;
+}
+
+.historyTable tr th{
+    padding: 10px
+}
+
+/*------------------------------------------------*/
+
+
+
+
+
+
+
+/*playerDisplay and related classes
+--------------------------------------------------*/
+
+.playerDisplay{
+    width: 58.1818181818181818vw;
+    height: 10.909090909090909vh;
+    outline: inherit;
+    grid-area: playerDisplay;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-areas: 
+        'playerDisplayPanel enemyDisplayPanel'
+}
+
+.playerDisplayPanel{
+    grid-area: playerDisplayPanel;
+}
+
+.enemyDisplayPanel{
+    grid-area: enemyDisplayPanel;
+}
+
+#playerPanel{
+    width: 29.090909090909090909vw;
+    height: 10.90909090909090909vh;
+    outline: inherit;
+    display: grid;
+    grid-template-columns: 1fr 3fr;
+    grid-template-rows: 2fr 1fr;
+    grid-template-areas: 
+        'playerIcon playerName'
+        'playerIcon playerStatus';
+}
+
+.playerIcon{
+/*
+    width: 7.272727272727272727vw;
+    height: 10.90909090909090909vh;
+    background: url("/profile/profilePic/0000001");
+    background-repeat: no-repeat;
+    background-size: contain;
+    background-position: 50%;
+    outline: inherit;
+    grid-area: playerIcon;
+*/
+}
+
+.enemyIcon{
+/*
+    width: 7.272727272727272727vw;
+    height: 10.90909090909090909vh;
+    background-repeat: no-repeat;
+    background-size: contain;
+    background-position: 50%;
+    outline: inherit;
+    grid-area: playerIcon;
+*/
+}
+
+.playerName{
+    width: 21.81818181818181818vw;
+    height: 7.2727272727272727vh;
+    outline: inherit;
+    grid-area: playerName;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 2em;
+    overflow: hidden;
+}
+
+.playerStatus{
+    width: 21.81818181818181818vw;
+    height: 3.6363636363636363vh;
+    outline: inherit;
+    grid-area: playerStatus;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+}
+
+/*------------------------------------------------*/
+
+
+
+
+
+
+
+/*gameButtonMenu and related classes
+--------------------------------------------------*/
+
+.gameButtonMenu{
+    outline: inherit;
+    grid-area: gameButtonMenu;
+    height: 5.4545454545454vh;
+    width: 21.818181818181818vw;
+}
+
+.gameButtonMenu button {
+    outline: inherit;
+    background-color: inherit;
+    float: left;
+    cursor: pointer;
+    overflow: hidden;
+    width: 21.818181818181818vw;
+    height: 5.454545454545454vh;
+}
+
+.gameButtonMenu button:hover {
+    background-color: darkgrey;
+}
+
+/*------------------------------------------------*/
+
+
+
+
+/*chatMenu and related classes
+--------------------------------------------------*/
+
+.chatMenu{
+    outline: inherit;
+    grid-area: chatMenu;
+    height: 38.1818181818181818vh;
+    width: 21.818181818181818vw;
+}
+
+/*------------------------------------------------*/
+
+
+
+
+/*chatBar and related classes
+--------------------------------------------------*/
+
+.chatBar{
+    outline: inherit;
+    grid-area: chatBar;
+    height: 5.4545454545454vh;
+    width: 21.818181818181818vw;
+    display: grid;
+    grid-template-columns: 4fr 1fr;
+    grid-template-areas: 
+        'chatInput sendButton';
+}
+
+.chatInput{
+    height: 5.4545454545454vh;
+    width: 17.4545454545454545vw;
+    overflow: hidden;
+    grid-area: chatInput;
+}
+
+.sendButton{
+    height: 5.4545454545454vh;
+    width: 4.3636363636363636vw;
+    overflow: hidden;
+    grid-area: sendButton;
+}
+
+/*------------------------------------------------*/
