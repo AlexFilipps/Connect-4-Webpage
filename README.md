@@ -1,1 +1,11 @@
 # Connect-4-Webpage
+
+This project contains the full implementation of a website designed to allow users to play connect-4 with each other online. This includes any back-end/server code, html/css/javascript for all pages on the website, and any other assets used. Although not currently hosted anywhere, the server code is fully functional, and was written to run in a Node.js environment.
+
+The purpose of the website is to allow users to connect with their friends online and play connect-4 with them virtually, either in real-time or over an extended duration. The main functionalities of the website include:
+  - The game of connect-4: Once two users of the website have agreed to face off, they are taken to the game page in which they are able to play one another. The website contains fully functional game logic including a turn system, move selection and history, and win/loss checking. Users are able to play both in real-time (seeing their opponents' moves as they take them), or over an extended period (leaving an active game until they are notified of their opponents turn).
+  - In game chat: While playing or spectating a game, users can chat to one another through the chat box in the game page. The chat history is saved and can be viewed later in the case of games taking place over longer periods of time.
+  - A user profile system: This allows users of the website to create an account which is only accessible to them, and in which they can edit information or see statistics about their previous games.
+  - Game history: Once a user has played a game to completion, it will appear in a game history section on their profile where they can review information about it such as the end state (win/loss/tie), what the ending board looked like, who they were playing against, and the in game chat during play. 
+  - A friend and messaging system: Users with accounts have the ability to add fellow users to their friends list after which point they can message back and forth, or challenge that friend to a game.
+  - Site navigation: From the main page users can navigate to any important pages they may want to reach including their personal profile, friends list, chat inbox, ongoing or past games.
